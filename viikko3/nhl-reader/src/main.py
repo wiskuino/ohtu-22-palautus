@@ -17,11 +17,15 @@ def main():
         )
         if player_dict['nationality'] == "FIN":
             players.append(player)
-
+    
     print(f"Players from FIN {datetime.now()}")
     print()
 
-    for player in players:
+
+    parhaat = filter(lambda player : (player.goals+player.assists) > 20,players)
+    
+
+    for player in parhaat:
         print(player)
 
 if __name__=="__main__":
