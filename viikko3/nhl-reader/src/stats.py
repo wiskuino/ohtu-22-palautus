@@ -20,7 +20,7 @@ class PlayerStats:
                 self.players.append(player)
 
         self.players.sort(key=lambda x: (x.goals+x.assists),reverse=True)
-        return filter(lambda player : (player.goals+player.assists) > 50,self.players)
+        return filter(lambda player : (player.goals+player.assists) >= 0,self.players)
 
 
 
