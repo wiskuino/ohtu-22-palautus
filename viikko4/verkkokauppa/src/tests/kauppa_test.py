@@ -19,11 +19,15 @@ class TestKauppa(unittest.TestCase):
         def varasto_saldo(tuote_id):
             if tuote_id == 1:
                 return 10
+            if tuote_id == 2:
+                return 20
 
         # tehdään toteutus hae_tuote-metodille
         def varasto_hae_tuote(tuote_id):
             if tuote_id == 1:
                 return Tuote(1, "maito", 5)
+            if tuote_id == 2:
+                return Tuote(2, "nakit", 10)
 
         # otetaan toteutukset käyttöön
         varasto_mock.saldo.side_effect = varasto_saldo
@@ -71,7 +75,7 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock.tilisiirto.assert_called()
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
 
-    def test_ostoksen_paaytyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
+    def test_ostoksen_paatyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         """
         pankki_mock = Mock()
         viitegeneraattori_mock = Mock()
@@ -105,4 +109,16 @@ class TestKauppa(unittest.TestCase):
 
         # varmistetaan, että metodia tilisiirto on kutsuttu
         self.pankki_mock.tilisiirto.assert_called_with("pekka",42,"12345","33333-44455",5)
+        # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
+
+    def test_kahden_ostoksen_paatyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
+
+        # tehdään ostokset
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+        
+        # varmistetaan, että metodia tilisiirto on kutsuttu
+        self.pankki_mock.tilisiirto.assert_called_with("pekka",42,"12345","33333-44455",12)
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
