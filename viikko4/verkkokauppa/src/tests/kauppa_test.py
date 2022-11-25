@@ -111,7 +111,7 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock.tilisiirto.assert_called_with("pekka",42,"12345","33333-44455",5)
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
 
-    def test_kahden_ostoksen_paatyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
+    def test_kahden_eri_ostoksen_paatyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
 
         # tehdään ostokset
         self.kauppa.aloita_asiointi()
@@ -121,4 +121,15 @@ class TestKauppa(unittest.TestCase):
         
         # varmistetaan, että metodia tilisiirto on kutsuttu
         self.pankki_mock.tilisiirto.assert_called_with("pekka",42,"12345","33333-44455",15)
+        # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
+
+    def test_kahden_saman_ostoksen_paatyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
+        # tehdään ostokset
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        # varmistetaan, että metodia tilisiirto on kutsuttu
+        self.pankki_mock.tilisiirto.assert_called_with("pekka",42,"12345","33333-44455",20)
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
