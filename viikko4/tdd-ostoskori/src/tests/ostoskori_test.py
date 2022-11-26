@@ -24,6 +24,7 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(self.maito)
         self.kori.lisaa_tuote(self.juusto)
         self.assertEqual(self.kori.hinta(),7)
-        self.assertEqual(self.kori.tavaroita_korissa(),2)
+    
+       
        
     
