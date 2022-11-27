@@ -11,7 +11,7 @@ class Ostoskori:
         if self.kori == {}:
             return 0
         else:
-            return self.ostos._lukumaara
+            return len(self.kori)
         # kertoo korissa olevien tavaroiden lukumäärän
         # eli jos koriin lisätty 2 kpl tuotetta "maito", tulee metodin palauttaa 2 
         # samoin jos korissa on 1 kpl tuotetta "maito" ja 1 kpl tuotetta "juusto", tulee metodin palauttaar 2 
