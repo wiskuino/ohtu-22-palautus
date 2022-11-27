@@ -6,6 +6,7 @@ class Ostoskori:
         # ostoskori tallettaa Ostos-oliota, yhden per korissa oleva Tuote
         self.kori = {}
         self.ostos = Ostos(Tuote)
+        self.ostos._hinta = 0
 
     def tavaroita_korissa(self):
         if self.kori == {}:
@@ -20,12 +21,18 @@ class Ostoskori:
         if self.kori == {}:
             return 0
         else:
-            return self.ostos.hinta()
+            hinta=0
+            print(self.kori)
+            for tuote,olio in self.kori.items():
+                hinta = hinta+olio.hinta()
+            return hinta
         ## kertoo korissa olevien ostosten yhteenlasketun hinnan
 
     def lisaa_tuote(self, lisattava: Tuote):
-        self.ostos.tuote = lisattava
-        self.kori[lisattava._nimi] = self.ostos
+        if not lisattava._nimi in self.kori:
+            self.kori[lisattava._nimi] = Ostos(lisattava)
+        else:
+            self.kori[lisattava._nimi].muuta_lukumaaraa(1)
         #self.kori.append(self.ostos(lisattava))
         # lisaa tuotteen
 
