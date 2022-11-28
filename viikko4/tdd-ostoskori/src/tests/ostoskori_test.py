@@ -93,7 +93,10 @@ class TestOstoskori(unittest.TestCase):
     #step 13
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_toinen_poistetaan_jää_koriin_ostos_ja_lukumäärä_1(self):
         self.kori.lisaa_tuote(self.maito)
+        self.assertEqual(len(self.kori.ostokset()),  1)
+        self.assertEqual(self.kori.tavaroita_korissa(), 1)
         self.kori.lisaa_tuote(self.maito)
+        self.assertEqual(self.kori.tavaroita_korissa(), 2)
         self.kori.poista_tuote(self.maito)
         self.assertEqual(len(self.kori.ostokset()),  1)
         self.assertEqual(self.kori.tavaroita_korissa(), 1)
