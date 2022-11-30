@@ -18,8 +18,11 @@ class TennisGame:
         if self.player1_score == self.player2_score:
             self.score = self.deuce_case()
 
-        elif self.player1_score >= 4 or self.player2_score >= 4:
-            self.score = self.winning_case()  
+        elif self.player1_score >= 4 and self.player1_score > self.player2_score:
+            self.score = self.winning_player_1()  
+        
+        elif self.player2_score >= 4 and self.player2_score > self.player1_score:
+            self.score = self.winning_player_2()  
         
         else:
             self.score = self.playing_case()
@@ -43,7 +46,19 @@ class TennisGame:
                 self.score = self.score + "Forty"
         return self.score
 
-    def winning_case(self):
+    def winning_player_1(self):
+        result = self.player1_score - self. player2_score
+        if result == 1:
+            self.score = "Advantage player1"
+        #elif minus_result == -1:
+        #    self.score = "Advantage player2"
+        elif result >= 2:
+            self.score = "Win for player1"
+        else:
+            self.score = "Win for player2"
+        return self.score
+
+    def winning_player_2(self):
         minus_result = self.player1_score - self. player2_score
         if minus_result == 1:
             self.score = "Advantage player1"
