@@ -5,6 +5,7 @@ class TennisGame:
         self.player1_score = 0
         self.player2_score = 0
         self.score = ""
+        self.temp_score = 0
 
     def won_point(self, player_name):
         if player_name == "player1":
@@ -13,37 +14,38 @@ class TennisGame:
             self.player2_score = self.player2_score + 1
 
     def get_score(self):
-        temp_score = 0
+        #temp_score = 0
 
         
         if self.player1_score == self.player2_score:
-            self.deuce_case(self.score,self.player1_score,self.player2_score)
-
+            self.deuce_case()
 
         elif self.player1_score >= 4 or self.player2_score >= 4:
-            self.advantage_case(self.score,self.player1_score,self.player2_score)  
+            self.winning_case()  
         
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.player1_score
-                else:
-                    self.score = self.score + "-"
-                    temp_score = self.player2_score
-
-                if temp_score == 0:
-                    self.score = self.score + "Love"
-                elif temp_score == 1:
-                    self.score = self.score + "Fifteen"
-                elif temp_score == 2:
-                    self.score = self.score + "Thirty"
-                elif temp_score == 3:
-                    self.score = self.score + "Forty"
-
-    
+            self.playing_case()
+        
         return self.score
 
-    def advantage_case(self, score, player1_score, player2_score):
+    def playing_case(self):
+        for i in range(1, 3):
+            if i == 1:
+                self.temp_score = self.player1_score
+            else:
+                self.score = self.score + "-"
+                self.temp_score = self.player2_score
+            if self.temp_score == 0:
+                self.score = self.score + "Love"
+            elif self.temp_score == 1:
+                self.score = self.score + "Fifteen"
+            elif self.temp_score == 2:
+                self.score = self.score + "Thirty"
+            elif self.temp_score == 3:
+                self.score = self.score + "Forty"
+        return self.score
+
+    def winning_case(self):
         minus_result = self.player1_score - self. player2_score
         if minus_result == 1:
             self.score = "Advantage player1"
@@ -55,7 +57,7 @@ class TennisGame:
             self.score = "Win for player2"
         return self.score
 
-    def deuce_case(self, score, player1_score, player2_score):
+    def deuce_case(self):
         
         if self.player1_score == 0:
             self.score = "Love-All"
