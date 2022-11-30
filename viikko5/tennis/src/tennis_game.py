@@ -19,10 +19,10 @@ class TennisGame:
             self.score = self.deuce_case()
 
         elif self.player1_score >= 4 and self.player1_score > self.player2_score:
-            self.score = self.winning_player_1()  
+            self.score = self.winning_player_1()  #player1 johtaa
         
         elif self.player2_score >= 4 and self.player2_score > self.player1_score:
-            self.score = self.winning_player_2()  
+            self.score = self.winning_player_2()   # player2 johtaa
         
         else:
             self.score = self.playing_case()
@@ -47,23 +47,14 @@ class TennisGame:
         return self.score
 
     def winning_player_1(self):
-        if self.player1_score - self. player2_score == 1:
-            return "Advantage player1"
-        else: # ero on  >= 2:
-            return "Win for player1"
+        scores = {1:"Advantage player1",2:"Win for player1",3:"Win for player1", 4:"Win for player1"}
+        return scores[self.player1_score - self. player2_score]  
+        
 
     def winning_player_2(self):
-        minus_result = self.player1_score - self. player2_score
-        if minus_result == 1:
-            self.score = "Advantage player1"
-        elif minus_result == -1:
-            self.score = "Advantage player2"
-        elif minus_result >= 2:
-            self.score = "Win for player1"
-        else:
-            self.score = "Win for player2"
-        return self.score
-
+        scores = {1:"Advantage player2",2:"Win for player2",3:"Win for player2",4:"Win for player2"}
+        return scores[self.player2_score - self. player1_score]
+        
     def deuce_case(self):
         if self.player1_score > 3:
             return "Deuce"
