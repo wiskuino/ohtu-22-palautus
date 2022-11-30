@@ -32,12 +32,12 @@ class TennisGame:
         return f"{scores[self.player1_score]}-{scores[self.player2_score]}"
 
     def winning_player_1(self):
-        scores = {1:"Advantage player1",2:"Win for player1",3:"Win for player1", 4:"Win for player1"} # sanakirjaa tarvitaan vain metodissa
+        scores = {1:"Advantage "+self.player_1,2:"Win for "+self.player_1,3:"Win for "+self.player_1, 4:"Win for "+self.player_1} # sanakirjaa tarvitaan vain metodissa
         return scores[self.player1_score - self. player2_score]  
         
 
     def winning_player_2(self):
-        scores = {1:"Advantage player2",2:"Win for player2",3:"Win for player2",4:"Win for player2"} # sanakirjaa tarvitaan vain metodissa
+        scores = {1:"Advantage "+self.player_2,2:"Win for "+self.player_2,3:"Win for "+self.player_2,4:"Win for "+self.player_2} # sanakirjaa tarvitaan vain metodissa
         return scores[self.player2_score - self. player1_score]
         
     def deuce_case(self):
