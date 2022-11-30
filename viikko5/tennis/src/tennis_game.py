@@ -1,13 +1,13 @@
 class TennisGame:
     def __init__(self, player1_name, player2_name):
-        self.player1_name = player1_name
-        self.player2_name = player2_name
+        self.player_1 = player1_name
+        self.player_2 = player2_name
         self.player1_score = 0
         self.player2_score = 0
         
 
     def won_point(self, player_name):
-        if player_name == "player1":
+        if player_name == self.player_1:
             self.player1_score = self.player1_score + 1
         else:
             self.player2_score = self.player2_score + 1
@@ -26,7 +26,6 @@ class TennisGame:
         else:
             return self.playing_case()
     
-        
 
     def playing_case(self):
         scores = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}  # sanakirjaa tarvitaan vain metodissa
