@@ -18,17 +18,7 @@ class TennisGame:
         
         if self.player1_score == self.player2_score:
             self.deuce_case(self.score,self.player1_score,self.player2_score)
-            
-            #if self.player1_score == 0:
-            #    self.score = "Love-All"
-            #elif self.player1_score == 1:
-            #    self.score = "Fifteen-All"
-            #elif self.player1_score == 2:
-            #    self.score = "Thirty-All"
-            #elif self.player1_score == 3:
-            #    self.score = "Forty-All"
-            #else:
-            #    self.score = "Deuce"
+
 
         elif self.player1_score >= 4 or self.player2_score >= 4:
             self.advantage_case(self.score,self.player1_score,self.player2_score)  
