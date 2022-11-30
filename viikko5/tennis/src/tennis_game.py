@@ -47,16 +47,10 @@ class TennisGame:
         return self.score
 
     def winning_player_1(self):
-        result = self.player1_score - self. player2_score
-        if result == 1:
-            self.score = "Advantage player1"
-        #elif minus_result == -1:
-        #    self.score = "Advantage player2"
-        elif result >= 2:
-            self.score = "Win for player1"
-        else:
-            self.score = "Win for player2"
-        return self.score
+        if self.player1_score - self. player2_score == 1:
+            return "Advantage player1"
+        else: # ero on  >= 2:
+            return "Win for player1"
 
     def winning_player_2(self):
         minus_result = self.player1_score - self. player2_score
