@@ -15,17 +15,20 @@ class TennisGame:
     def get_score(self):
         temp_score = 0
 
+        
         if self.player1_score == self.player2_score:
-            if self.player1_score == 0:
-                self.score = "Love-All"
-            elif self.player1_score == 1:
-                self.score = "Fifteen-All"
-            elif self.player1_score == 2:
-                self.score = "Thirty-All"
-            elif self.player1_score == 3:
-                self.score = "Forty-All"
-            else:
-                self.score = "Deuce"
+            self.deuce_case(self.score,self.player1_score,self.player2_score)
+            
+            #if self.player1_score == 0:
+            #    self.score = "Love-All"
+            #elif self.player1_score == 1:
+            #    self.score = "Fifteen-All"
+            #elif self.player1_score == 2:
+            #    self.score = "Thirty-All"
+            #elif self.player1_score == 3:
+            #    self.score = "Forty-All"
+            #else:
+            #    self.score = "Deuce"
 
         elif self.player1_score >= 4 or self.player2_score >= 4:
             self.advantage_case(self.score,self.player1_score,self.player2_score)  
@@ -60,4 +63,18 @@ class TennisGame:
             self.score = "Win for player1"
         else:
             self.score = "Win for player2"
+        return self.score
+
+    def deuce_case(self, score, player1_score, player2_score):
+        
+        if self.player1_score == 0:
+            self.score = "Love-All"
+        elif self.player1_score == 1:
+            self.score = "Fifteen-All"
+        elif self.player1_score == 2:
+            self.score = "Thirty-All"
+        elif self.player1_score == 3:
+            self.score = "Forty-All"
+        else:
+            self.score = "Deuce"
         return self.score
