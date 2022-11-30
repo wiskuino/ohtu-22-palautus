@@ -4,7 +4,7 @@ class TennisGame:
         self.player2_name = player2_name
         self.player1_score = 0
         self.player2_score = 0
-        self.score = ""
+        
 
     def won_point(self, player_name):
         if player_name == "player1":
@@ -15,18 +15,18 @@ class TennisGame:
     def get_score(self):
         
         if self.player1_score == self.player2_score:
-            self.score = self.deuce_case()
+            return self.deuce_case()
 
         elif self.player1_score >= 4 and self.player1_score > self.player2_score:
-            self.score = self.winning_player_1()  # player_1 johtaa
+            return self.winning_player_1()  # player_1 johtaa
         
         elif self.player2_score >= 4 and self.player2_score > self.player1_score:
-            self.score = self.winning_player_2()   # player_2 johtaa
+            return self.winning_player_2()   # player_2 johtaa
         
         else:
-            self.score = self.playing_case()
+            return self.playing_case()
+    
         
-        return self.score
 
     def playing_case(self):
         scores = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}  # sanakirjaa tarvitaan vain metodissa
