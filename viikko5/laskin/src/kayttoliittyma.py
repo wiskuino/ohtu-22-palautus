@@ -62,21 +62,34 @@ class Kayttoliittyma:
         except Exception:
             pass
 
-        if komento == Komento.SUMMA:
-            self._sovellus.plus(arvo)
-        elif komento == Komento.EROTUS:
-            self._sovellus.miinus(arvo)
-        elif komento == Komento.NOLLAUS:
-            self._sovellus.nollaa()
-        elif komento == Komento.KUMOA:
-            pass
+        self._komennot(arvo,komento)
+
+        self._painikkeet()
+
+        self._syote_kentta.delete(0, constants.END)
+        self._tulos_var.set(self._sovellus.tulos)
+
+    def _komennot(self,arvo, komento):
+        
+        match komento:
+
+            case Komento.SUMMA:
+                self._sovellus.plus(arvo)
+            case Komento.EROTUS:
+                self._sovellus.miinus(arvo)
+            case Komento.NOLLAUS:
+                self._sovellus.nollaa()
+            case Komento.KUMOA:
+                pass   
+
+    def _painikkeet(self):
 
         self._kumoa_painike["state"] = constants.NORMAL
-
+        
         if self._sovellus.tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
         else:
             self._nollaus_painike["state"] = constants.NORMAL
-
-        self._syote_kentta.delete(0, constants.END)
-        self._tulos_var.set(self._sovellus.tulos)
+    
+       
+       
