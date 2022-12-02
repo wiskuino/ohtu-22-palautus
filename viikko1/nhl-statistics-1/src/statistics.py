@@ -13,7 +13,7 @@ class Statistics:
     def search(self, name):
         for player in self._players:
             if name in player.name:
-                return player
+                return player.name
 
         return None
 
@@ -34,7 +34,7 @@ class Statistics:
 
         result = []
         i = 0
-        while i <= how_many:
+        while i < how_many:
             result.append(sorted_players[i])
             i += 1
 
