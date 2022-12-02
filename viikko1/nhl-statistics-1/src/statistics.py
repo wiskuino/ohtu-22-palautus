@@ -35,37 +35,41 @@ class Statistics:
             sortkey = 1
         match sortkey:
             case 1:
-                sorted_players = sorted(
-                    self._players,
-                    reverse=True,
-                    key=sort_by_points
-                )
-                result = []
-                i = 0
-                while i < how_many:
-                    result.append(sorted_players[i])
-                    i += 1
-                return result
+                return sorted(self._players,reverse=True,key=sort_by_points)[:how_many]
+                #sorted_players = sorted(
+                #    self._players,
+                #    reverse=True,
+                #    key=sort_by_points
+                #)
+                #result = []
+                #i = 0
+                #while i < how_many:
+                #    result.append(sorted_players[i])
+                #    i += 1
+                #return result
 
             case 2:
-               sorted_players = sorted(
-                   self._players,
-                   reverse=True,
-                   key=sort_by_goals
-               )
-               result = []
-               i = 0
-               while i < how_many:
-                   result.append(sorted_players[i])
-                   i += 1
-               return result
+
+                return sorted(self._players,reverse=True,key=sort_by_goals)[:how_many]
+               #sorted_players = sorted(
+               #    self._players,
+               #    reverse=True,
+               #    key=sort_by_goals
+               #)
+               #result = []
+               #i = 0
+               #while i < how_many:
+               #    result.append(sorted_players[i])
+               #    i += 1
+               #return result
 
             case 3:
                   
-                  sorted_players = sorted(self._players,reverse=True,key=sort_by_assists)
-                  result = []
-                  i = 0
-                  while i < how_many:
-                      result.append(sorted_players[i])
-                      i += 1
-                  return result
+                 return sorted(self._players,reverse=True,key=sort_by_assists)[:how_many]
+                 #sorted_players = sorted(self._players,reverse=True,key=sort_by_assists)
+                 #result = []
+                 #i = 0
+                 #while i < how_many:
+                 #    result.append(sorted_players[i])
+                 #    i += 1
+                 #return result
