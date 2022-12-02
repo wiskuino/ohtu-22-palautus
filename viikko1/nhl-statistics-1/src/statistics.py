@@ -31,14 +31,9 @@ class Statistics:
         return list(players_of_team)
 
     def top(self, how_many,sortkey=None):
-        if sortkey == None:
-            sortkey = 1
-        match sortkey:
-            case 1:
-                return sorted(self._players,reverse=True,key=sort_by_points)[:how_many]
-
-            case 2:
-                return sorted(self._players,reverse=True,key=sort_by_goals)[:how_many]
-
-            case 3:
-                return sorted(self._players,reverse=True,key=sort_by_assists)[:how_many]
+        if sortkey == None or sortkey == 1:
+            return sorted(self._players,reverse=True,key=sort_by_points)[:how_many]
+        elif sortkey == 2:
+            return sorted(self._players,reverse=True,key=sort_by_goals)[:how_many]
+        else:
+            return sorted(self._players,reverse=True,key=sort_by_assists)[:how_many]
