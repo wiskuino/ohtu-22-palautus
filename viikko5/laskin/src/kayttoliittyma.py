@@ -13,6 +13,11 @@ class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
+        self.edelliset = []
+
+    def edellinen(self):
+        return self.edelliset[-1]
+
 
     def kaynnista(self):
         self._tulos_var = StringVar()
@@ -70,6 +75,8 @@ class Kayttoliittyma:
         self._tulos_var.set(self._sovellus.tulos)
 
     def _komennot(self,arvo, komento):
+        if komento != Komento.KUMOA:
+            self.edelliset.append(self._sovellus.tulos)
         
         match komento:
 
@@ -80,11 +87,15 @@ class Kayttoliittyma:
             case Komento.NOLLAUS:
                 self._sovellus.nollaa()
             case Komento.KUMOA:
-                pass   
+                self._sovellus.kumoa(self.edellinen())
+                self.edelliset.pop(-1)  
 
     def _painikkeet(self):
 
-        self._kumoa_painike["state"] = constants.NORMAL
+        if self.edelliset == []:
+            self._kumoa_painike["state"] = constants.DISABLED
+        else:
+            self._kumoa_painike["state"] = constants.NORMAL
         
         if self._sovellus.tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
