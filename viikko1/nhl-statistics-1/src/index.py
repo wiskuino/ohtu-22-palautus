@@ -1,6 +1,13 @@
 from statistics import Statistics
 from player_reader import PlayerReader
 
+from enum import Enum
+
+class SortBy(Enum):
+    POINTS = 1
+    GOALS = 2
+    ASSISTS = 3
+
 
 def main():
     stats = Statistics(PlayerReader)
@@ -13,6 +20,18 @@ def main():
 
     print("Top point getters:")
     for player in top_scorers:
+        print(player)
+
+    print("Top by point getters")
+    for player in stats.top(10,SortBy.POINTS.value):
+        print(player)
+
+    print("Top by goal getters")
+    for player in stats.top(10,SortBy.GOALS.value):
+        print(player)
+    
+    print("Top by assists")
+    for player in stats.top(10,SortBy.ASSISTS.value):
         print(player)
 
 
