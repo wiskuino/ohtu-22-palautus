@@ -1,3 +1,5 @@
+from kayttoliittyma import Kayttoliittyma
+
 class Sovelluslogiikka:
     def __init__(self, tulos=0):
         self.tulos = tulos
@@ -10,6 +12,9 @@ class Sovelluslogiikka:
 
     def nollaa(self):
         self.tulos = 0
+
+    def kumoa(self,edellinen):
+        self.tulos=edellinen
 
     def aseta_arvo(self, arvo):
         self.tulos = arvo
