@@ -14,8 +14,11 @@ class TennisGame:
 
     def get_score(self):
 
-        if (self.player_1_points >= 4 or self.player_2_points >= 4) and self.player_1_points != self.player_2_points:
-            leader = self.player_1 if self.player_1_points > self.player_2_points else self.player_2
+        if (self.player_1_points >= 4 or self.player_2_points >= 4) \
+            and self.player_1_points != self.player_2_points:
+            leader = self.player_1 if self.player_1_points > self.player_2_points \
+                else self.player_2
+            
             return self.player_x_advantage(leader,abs(self.player_1_points - self. player_2_points)) 
 
         else:
