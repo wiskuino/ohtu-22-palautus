@@ -5,11 +5,16 @@ OLETUSKASVATUS = 5
 class IntJoukko:
     def __init__(self, kapasiteetti=KAPASITEETTI, laajennus=OLETUSKASVATUS):
         
-        self.kapasiteetti = kapasiteetti
-        if not isinstance(kapasiteetti, int) or kapasiteetti < 0:
-            raise Exception("Väärä kapasiteetti")  
-
-        self.laajennus = OLETUSKASVATUS
+        if isinstance(kapasiteetti, int) and kapasiteetti > 0:
+            self.kapasiteetti = kapasiteetti
+        else:
+            raise Exception("Väärä kapasiteetti")
+        
+        if  isinstance(laajennus, int) and laajennus > 0:
+            self.laajennus = laajennus
+        else:
+            raise Exception("Väärä laajennus")
+        
         self.ljono = [0] * self.kapasiteetti
         self.alkioiden_lkm = 0
 
@@ -29,13 +34,12 @@ class IntJoukko:
         if self.alkioiden_lkm == len(self.ljono):
             self.ljono += self.laajennus*[0]
 
-    def poista(self, n):
-        self.ljono =[alkio for alkio in self.ljono if alkio !=n ]
+    def poista(self, poistettava_alkio):
+        self.ljono =[alkio for alkio in self.ljono if alkio != poistettava_alkio]
         self.alkioiden_lkm = self.ljono.index(0)
 
-    def kopioi_taulukko(self, a:list, b:list):
-        for alkio in range(0, len(a)):
-            b[alkio] = a[alkio]
+    def kopioi_taulukko(self, mista:list, mihin:list):
+            mihin = mista[:]
 
     def mahtavuus(self):
         return self.alkioiden_lkm
