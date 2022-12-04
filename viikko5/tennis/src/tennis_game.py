@@ -4,7 +4,7 @@ class TennisGame:
         self.player_2 = name_2
         self.player_1_points = 0
         self.player_2_points = 0
-        self.points = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}
+        self.scoring_call = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}
 
     def won_point(self, player):
         if player == self.player_1:
@@ -26,12 +26,12 @@ class TennisGame:
         return cases[leader_points]
 
     def deuce(self):
-        return "Deuce" if self.player_1_points > 3 else f"{self.points[self.player_1_points]}-All" 
+        return "Deuce" if self.player_1_points > 3 else f"{self.scoring_call[self.player_1_points]}-All" 
     
     def continue_playing(self):
-        return f"{self.points[self.player_1_points]}-{self.points[self.player_2_points]}" if self.player_2_points != self.player_1_points \
+        return f"{self.scoring_call[self.player_1_points]}-{self.scoring_call[self.player_2_points]}" if self.player_2_points != self.player_1_points \
              else "Deuce" if self.player_1_points > 3 \
-                else f"{self.points[self.player_1_points]}-All" 
+                else f"{self.scoring_call[self.player_1_points]}-All" 
 
     
     
