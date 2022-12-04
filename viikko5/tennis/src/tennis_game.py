@@ -1,49 +1,40 @@
 class TennisGame:
-    def __init__(self, player1_name, player2_name):
-        self.player_1 = player1_name
-        self.player_2 = player2_name
-        self.player_1_score = 0
-        self.player_2_score = 0
-        
+    def __init__(self, name_1, name_2):
+        self.player_1 = name_1
+        self.player_2 = name_2
+        self.player_1_points = 0
+        self.player_2_points = 0
+        self.points = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}
 
-    def won_point(self, player_name):
-        if player_name == self.player_1:
-            self.player_1_score = self.player_1_score + 1
+    def won_point(self, player):
+        if player == self.player_1:
+            self.player_1_points +=  1
         else:
-            self.player_2_score = self.player_2_score + 1
+            self.player_2_points += 1
 
     def get_score(self):
-        
-        if self.player_1_score == self.player_2_score:
-            return self.deuce_case()
 
-        elif self.player_1_score >= 4 and self.player_1_score > self.player_2_score:
-            return self.player_1_advantage()  # player_1 johtaa
-        
-        elif self.player_2_score >= 4 and self.player_2_score > self.player_1_score:
-            return self.player_2_advantage()   # player_2 johtaa
-        
+        if (self.player_1_points >= 4 or self.player_2_points >= 4) and self.player_1_points != self.player_2_points:
+            leader = self.player_1 if self.player_1_points > self.player_2_points else self.player_2
+            return self.player_x_advantage(leader,abs(self.player_1_points - self. player_2_points)) 
+
         else:
-            return self.playing()
+            return self.continue_playing()
+
+    def player_x_advantage(self,leader,leader_points): 
+        cases = {1:"Advantage "+leader,2:"Win for "+leader,3:"Win for "+leader, 4:"Win for "+leader} 
+        return cases[leader_points]
+
+    def deuce(self):
+        return "Deuce" if self.player_1_points > 3 else f"{self.points[self.player_1_points]}-All" 
     
+    def continue_playing(self):
+        return f"{self.points[self.player_1_points]}-{self.points[self.player_2_points]}" if self.player_2_points != self.player_1_points \
+             else "Deuce" if self.player_1_points > 3 \
+                else f"{self.points[self.player_1_points]}-All" 
 
-    def playing(self):
-        scores = {0:"Love",1:"Fifteen",2:"Thirty",3:"Forty"}  # sanakirjaa tarvitaan vain metodissa
-        return f"{scores[self.player_1_score]}-{scores[self.player_2_score]}" # tulos sen mukaan kuin kummallkin on pisteitä
-
-    def player_1_advantage(self): # etu player_1 pelaajalla ja myös voitto jos näin käy
-        scores = {1:"Advantage "+self.player_1,2:"Win for "+self.player_1,3:"Win for "+self.player_1, 4:"Win for "+self.player_1} # sanakirjaa tarvitaan vain metodissa
-        return scores[self.player_1_score - self. player_2_score]  
-        
-
-    def player_2_advantage(self): # etu player_2 pelaajalla ja myös voitto jos näin käy
-        scores = {1:"Advantage "+self.player_2,2:"Win for "+self.player_2,3:"Win for "+self.player_2,4:"Win for "+self.player_2} # sanakirjaa tarvitaan vain metodissa
-        return scores[self.player_2_score - self. player_1_score]
-        
-    def deuce_case(self):  # tänne tullaan tasapisteissä
-        if self.player_1_score > 3:
-            return "Deuce"  #  näin tavataan sanoa
-        else:
-            scores = {0:"Love-All",1:"Fifteen-All",2:"Thirty-All",3:"Forty-All"} # sanakirjaa tarvitaan vain metodissa
-            return scores[self.player_1_score] # vaikka tässä on player_1, pitää muistaa että ollaan tasurissa
+    
+    
+    
+    
 
