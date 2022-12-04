@@ -8,7 +8,7 @@ class TennisGame:
 
     def won_point(self, player):
         if player == self.player_1:
-            self.player_1_points +=  1
+            self.player_1_points += 1
         else:
             self.player_2_points += 1
 
