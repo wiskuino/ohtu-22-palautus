@@ -29,9 +29,10 @@ class TennisGame:
         return "Deuce" if self.player_1_points > 3 else f"{self.scoring_call[self.player_1_points]}-All" 
     
     def continue_playing(self):
-        return f"{self.scoring_call[self.player_1_points]}-{self.scoring_call[self.player_2_points]}" if self.player_2_points != self.player_1_points \
-             else "Deuce" if self.player_1_points > 3 \
-                else f"{self.scoring_call[self.player_1_points]}-All" 
+        return f"{self.scoring_call[self.player_1_points]}-{self.scoring_call[self.player_2_points]}" \
+             if self.player_2_points != self.player_1_points else self.deuce()
+            
+            
 
     
     
