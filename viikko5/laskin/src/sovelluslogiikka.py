@@ -1,9 +1,10 @@
 
 
 class Sovelluslogiikka:
-    def __init__(self, tulos=0):
+    def __init__(self, tulos=0.0):
         self.tulos = tulos
         self.edelliset = []
+
 
     def miinus(self, arvo):
         self.edelliset.append(self.tulos)
@@ -17,7 +18,7 @@ class Sovelluslogiikka:
     
     def nollaa(self):
         self.edelliset.append(self.tulos)
-        self.tulos = 0
+        self.tulos = 0.0
 
     def kumoa(self):
         self.tulos=self.edelliset.pop(-1)

@@ -10,36 +10,31 @@ class Komento(Enum):
 
 
 class Summa:
-    def __init__(self,sovellus,arvo):
+    def __init__(self,sovellus):
         self._sovellus=sovellus
-        self.arvo=arvo
         
-
-    def suorita(self,luku:int):
-        return self._sovellus.plus(luku)
+    def suorita(self,arvo:float):
+        return self._sovellus.plus(arvo)
 
 class Erotus:
-    def __init__(self,sovellus,arvo):
+    def __init__(self,sovellus):
         self._sovellus=sovellus
-        self.arvo=arvo
 
-    def suorita(self, luku:int):
-        return self._sovellus.miinus(luku)
+    def suorita(self, arvo:float):
+        return self._sovellus.miinus(arvo)
 
 class Nollaus:
-    def __init__(self,sovellus,arvo):
+    def __init__(self,sovellus):
         self._sovellus=sovellus
-        self.arvo=arvo
         
-    def suorita(self, luku:int):
+    def suorita(self, *args):
         return self._sovellus.nollaa()
 
 class Kumoa:
-    def __init__(self,sovellus,arvo):
+    def __init__(self,sovellus):
         self._sovellus=sovellus
-        self.arvo=arvo
 
-    def suorita(self,dummy):
+    def suorita(self, *args):
         return self._sovellus.kumoa()
 
 
@@ -50,17 +45,11 @@ class Kayttoliittyma:
         self.edelliset = []
         self._syote_kentta=0
         self._komennot = {
-            Komento.SUMMA: Summa(sovellus, self._lue_syote),
-            Komento.EROTUS: Erotus(sovellus, self._lue_syote),
-            Komento.NOLLAUS: Nollaus(sovellus, self._lue_syote),
-            Komento.KUMOA: Kumoa(sovellus,self.edellinen)
+            Komento.SUMMA: Summa(sovellus),
+            Komento.EROTUS: Erotus(sovellus),
+            Komento.NOLLAUS: Nollaus(sovellus),
+            Komento.KUMOA: Kumoa(sovellus)
         }
-
-
-
-    def edellinen(self):
-            return self.edelliset[-1]
-    
 
     def kaynnista(self):
         self._tulos_var = StringVar()
@@ -101,63 +90,25 @@ class Kayttoliittyma:
         erotus_painike.grid(row=2, column=1)
         self._nollaus_painike.grid(row=2, column=2)
         self._kumoa_painike.grid(row=2, column=3)
-
-   #def _suorita_komento(self, komento):
-   #    arvo = 0
-
-   #    try:
-   #        arvo = int(self._syote_kentta.get())
-   #    except Exception:
-   #        pass
-
-    def _lue_syote(self):
-        return int(self._syote_kentta.get())
-
-    #def suorita(self):
-    #    pass
     
     def _suorita_komento(self, komento):
         arvo=0
         komento_olio = self._komennot[komento]
         try:
-            arvo = int(self._lue_syote())
+            arvo = float(self._lue_syote())
         except Exception:
-            #if komento_olio == True:
-            #    arvo = self.edellinen()
-            #else:
             pass
-        
 
         komento_olio.suorita(arvo)
-        #self.edelliset.append(self._sovellus.tulos)
-        self._kumoa_painike["state"] = constants.NORMAL
 
+        self._painike_ikkunan_yllapito()
 
-
-        #self._komennot(arvo,komento)
-
-        self._painikkeet()
-
-        self._syote_kentta.delete(0, constants.END)
-        self._tulos_var.set(self._sovellus.tulos)
-
-    def _komennot(self,arvo, komento):
-        if komento != Komento.KUMOA:
-            self.edelliset.append(self._sovellus.tulos)
+    
+    def _lue_syote(self):
+        return float(self._syote_kentta.get()) 
         
-        match komento:
 
-            case Komento.SUMMA:
-                self._sovellus.plus(arvo)
-            case Komento.EROTUS:
-                self._sovellus.miinus(arvo)
-            case Komento.NOLLAUS:
-                self._sovellus.nollaa()
-            case Komento.KUMOA:
-                self._sovellus.kumoa(self.edellinen())
-                self.edelliset.pop(-1)  
-
-    def _painikkeet(self):
+    def _painike_ikkunan_yllapito(self):
 
         if self._sovellus.edelliset == []:
             self._kumoa_painike["state"] = constants.DISABLED
@@ -169,5 +120,6 @@ class Kayttoliittyma:
         else:
             self._nollaus_painike["state"] = constants.NORMAL
     
+        self._syote_kentta.delete(0, constants.END)
        
-       
+        self._tulos_var.set(self._sovellus.tulos)
