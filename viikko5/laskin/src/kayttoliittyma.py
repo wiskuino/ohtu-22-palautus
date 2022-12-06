@@ -9,15 +9,58 @@ class Komento(Enum):
     KUMOA = 4
 
 
+class Summa:
+    def __init__(self,sovellus,arvo):
+        self._sovellus=sovellus
+        self.arvo=arvo
+        
+
+    def suorita(self,luku:int):
+        return self._sovellus.plus(luku)
+
+class Erotus:
+    def __init__(self,sovellus,arvo):
+        self._sovellus=sovellus
+        self.arvo=arvo
+
+    def suorita(self, luku:int):
+        return self._sovellus.miinus(luku)
+
+class Nollaus:
+    def __init__(self,sovellus,arvo):
+        self._sovellus=sovellus
+        self.arvo=arvo
+        
+    def suorita(self, luku:int):
+        return self._sovellus.nollaa()
+
+class Kumoa:
+    def __init__(self,sovellus,arvo):
+        self._sovellus=sovellus
+        self.arvo=arvo
+
+    def suorita(self,dummy):
+        return self._sovellus.kumoa()
+
+
 class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
         self.edelliset = []
+        self._syote_kentta=0
+        self._komennot = {
+            Komento.SUMMA: Summa(sovellus, self._lue_syote),
+            Komento.EROTUS: Erotus(sovellus, self._lue_syote),
+            Komento.NOLLAUS: Nollaus(sovellus, self._lue_syote),
+            Komento.KUMOA: Kumoa(sovellus,self.edellinen)
+        }
+
+
 
     def edellinen(self):
-        return self.edelliset[-1]
-
+            return self.edelliset[-1]
+    
 
     def kaynnista(self):
         self._tulos_var = StringVar()
@@ -59,15 +102,39 @@ class Kayttoliittyma:
         self._nollaus_painike.grid(row=2, column=2)
         self._kumoa_painike.grid(row=2, column=3)
 
+   #def _suorita_komento(self, komento):
+   #    arvo = 0
+
+   #    try:
+   #        arvo = int(self._syote_kentta.get())
+   #    except Exception:
+   #        pass
+
+    def _lue_syote(self):
+        return int(self._syote_kentta.get())
+
+    #def suorita(self):
+    #    pass
+    
     def _suorita_komento(self, komento):
-        arvo = 0
-
+        arvo=0
+        komento_olio = self._komennot[komento]
         try:
-            arvo = int(self._syote_kentta.get())
+            arvo = int(self._lue_syote())
         except Exception:
+            #if komento_olio == True:
+            #    arvo = self.edellinen()
+            #else:
             pass
+        
 
-        self._komennot(arvo,komento)
+        komento_olio.suorita(arvo)
+        #self.edelliset.append(self._sovellus.tulos)
+        self._kumoa_painike["state"] = constants.NORMAL
+
+
+
+        #self._komennot(arvo,komento)
 
         self._painikkeet()
 
@@ -92,7 +159,7 @@ class Kayttoliittyma:
 
     def _painikkeet(self):
 
-        if self.edelliset == []:
+        if self._sovellus.edelliset == []:
             self._kumoa_painike["state"] = constants.DISABLED
         else:
             self._kumoa_painike["state"] = constants.NORMAL
