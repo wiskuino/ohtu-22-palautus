@@ -9,11 +9,14 @@ def main():
     reader = PlayerReader(url)
     stats = Statistics(reader)
 
-    query = QueryBuilder(url)
-    matcher= query.build()
+    query = QueryBuilder()
+    matcher= query.playsIn("NYR").build()
 
     for player in stats.matches(matcher):
         print(player)
+
+
+
 
    #matcher = And(
    #   HasAtLeast(5, "goals"),
@@ -33,34 +36,33 @@ def main():
     #    Not(HasAtLeast(1, "goals")),
     #    PlaysIn("NYR"))   
     
-    matcher3 = Or(
-    HasAtLeast(45, "goals"),
-    HasAtLeast(70, "assists")
-)
-    
-   
-   
+   #matcher3 = Or(
+   #HasAtLeast(45, "goals"),
+   #HasAtLeast(70, "assists"))
+   #
+   #
+   #
 
-    
-    #
+   #
+   ##
 
    #matcher = And(
    #HasFewerThan(1, "goals"),
    #PlaysIn("NYR"))
 
-    matcher = And(
-    HasAtLeast(70, "points"),
-    Or(
-        PlaysIn("NYR"),
-        PlaysIn("FLA"),
-        PlaysIn("BOS")))
-
-    for player in stats.matches(matcher):
-        print(player)
-    print("välirivi")
-    
-    for player in stats.matches(matcher3):
-        print(player)
+    #matcher = And(
+    #HasAtLeast(70, "points"),
+    #Or(
+    #    PlaysIn("NYR"),
+    #    PlaysIn("FLA"),
+    #    PlaysIn("BOS")))
+#
+    #for player in stats.matches(matcher):
+    #    print(player)
+    #print("välirivi")
+    #
+    #for player in stats.matches(matcher3):
+    #   print(player)
     
     
 

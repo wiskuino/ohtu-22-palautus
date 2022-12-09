@@ -1,9 +1,13 @@
-from matchers import All
+from matchers import All, PlaysIn
 
 
 class QueryBuilder:
-    def __init__(self, url):    
-        self._url = url
+    def __init__(self, matcher = None):
+        self.matcher = matcher or All()
     
     def build(self):
-        return All()
+        return self.matcher
+    
+    def playsIn(self, team):
+        return QueryBuilder(self.matcher and PlaysIn(team))
+            
