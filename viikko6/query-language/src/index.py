@@ -15,10 +15,10 @@ def main():
    #for player in stats.matches(matcher):
    #   print(player)
 
-    #matcher2 = All( "name")
-#
-    #for player in stats.matches(matcher2):
-    #   print(player)
+    matcher2 = All()
+
+    for player in stats.matches(matcher2):
+       print(player)
 
     #matcher3 = Not(HasAtLeast(1,"goals"))    
     #matcher3 = And(
@@ -47,12 +47,12 @@ def main():
         PlaysIn("FLA"),
         PlaysIn("BOS")))
 
-    for player in stats.matches(matcher):
-        print(player)
-    print("välirivi")
-    
-    for player in stats.matches(matcher3):
-        print(player)
+   #for player in stats.matches(matcher):
+   #    print(player)
+   #print("välirivi")
+   #
+   #for player in stats.matches(matcher3):
+   #    print(player)
     
     
 
