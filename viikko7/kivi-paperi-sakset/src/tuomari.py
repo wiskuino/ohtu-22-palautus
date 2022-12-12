@@ -24,8 +24,5 @@ class Tuomari:
     # sisäinen metodi joka tarkastaa voittaako eka pelaaja tokan
     def _eka_voittaa(self, eka, toka):
         näillä_eka_voittaa = "jos ekalla "+eka+" ja tokalla "+toka
+        return näillä_eka_voittaa in ["jos ekalla k ja tokalla s", "jos ekalla s ja tokalla p","jos ekalla p ja tokalla k"]
 
-        if näillä_eka_voittaa in ["jos ekalla k ja tokalla s", "jos ekalla s ja tokalla p","jos ekalla p ja tokalla k"]:
-            return True
-
-        return False
