@@ -9,18 +9,31 @@ class Siirto(Enum):
 
 class Tekoaly:
     def __init__(self):
-        self._siirto=0
-        self.siirrot = [Siirto.Kivi,Siirto.Paperi,Siirto.Sakset]
+        self._siirto_indeksi=0
+        self.siirrot = [Siirto.Kivi.value,Siirto.Paperi.value,Siirto.Sakset.value]
 
 
-    def anna_siirto(self):
-        self._siirto += 1
-        self._siirto = self._siirto % 3
-        return self.siirrot[self._siirto].value
+    def anna_siirto(self,edellinen_siirto):
+        self._siirto_indeksi = self.siirrot.index(edellinen_siirto)
+        self._siirto_indeksi += 1
+        self._siirto_indeksi = self._siirto_indeksi % 3
+        return self.siirrot[self._siirto_indeksi]
 
     def aseta_siirto(self, siirto):
         # ei tehdä mitään
         pass
+
+   
+   
+   
+   
+   
+   
+
+       
+       
+       
+       
 
 
 
