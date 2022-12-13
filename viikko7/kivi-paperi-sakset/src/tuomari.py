@@ -6,6 +6,18 @@ class Tuomari:
         self.tokan_pisteet = 0
         self.tasapelit = 0
 
+    def _onko_ok_siirto(self, siirto):
+        return siirto == "k" or siirto == "p" or siirto == "s"
+    
+    def tarkasta_siirrot(self,ekan_siirto, tokan_siirto):
+        if self._onko_ok_siirto(ekan_siirto) and self._onko_ok_siirto(tokan_siirto):
+            self.kirjaa_siirto(ekan_siirto, tokan_siirto)
+            print(self.__str__())
+            return True
+        else:
+            self.lopeta_peli()
+    
+    
     def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
         if self._tasapeli(ekan_siirto, tokan_siirto):
             self.tasapelit = self.tasapelit + 1
@@ -13,6 +25,9 @@ class Tuomari:
             self.ekan_pisteet = self.ekan_pisteet + 1
         else:
             self.tokan_pisteet = self.tokan_pisteet + 1
+
+    def lopeta_peli(self):
+        print(f"Kiitos!\n{self.__str__()}")
 
     def __str__(self):
         return f"Pelitilanne: {self.ekan_pisteet} - {self.tokan_pisteet}\nTasapelit: {self.tasapelit}"
