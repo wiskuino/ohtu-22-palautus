@@ -17,7 +17,6 @@ class Tuomari:
         else:
             self.lopeta_peli()
     
-    
     def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
         if self._tasapeli(ekan_siirto, tokan_siirto):
             self.tasapelit = self.tasapelit + 1
