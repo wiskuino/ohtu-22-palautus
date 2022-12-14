@@ -1,18 +1,21 @@
 # "Muistava tekoäly"
 class TekoalyParannettu:
     def __init__(self, muistin_koko):
-        self._muisti = [None] * muistin_koko
+        self._muisti = []
+        self.muistin_koko= muistin_koko
         self._vapaa_muisti_indeksi = 0
 
     def aseta_siirto(self, siirto):
-        # jos muisti täyttyy, unohdetaan viimeinen alkio
-        if self._vapaa_muisti_indeksi == len(self._muisti):
-            for i in range(1, len(self._muisti)):
-                self._muisti[i - 1] = self._muisti[i]
+        # muistin  täyttyessä vanhin poistetaan
+        if self.muistin_koko == len(self._muisti):
+            #for i in range(1, len(self._muisti)):
+            #   self._muisti[i - 1] = self._muisti[i]
+            self._muisti.pop(0)
+            
 
-            self._vapaa_muisti_indeksi = self._vapaa_muisti_indeksi - 1
+            self._vapaa_muisti_indeksi = len(self._muisti)
 
-        self._muisti[self._vapaa_muisti_indeksi] = siirto
+        self._muisti.append(siirto)
         self._vapaa_muisti_indeksi = self._vapaa_muisti_indeksi + 1
 
     def anna_siirto(self):
