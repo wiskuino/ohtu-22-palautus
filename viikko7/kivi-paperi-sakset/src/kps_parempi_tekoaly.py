@@ -1,28 +1,39 @@
 from tuomari import Tuomari
 from tekoaly_parannettu import TekoalyParannettu
+from kps_tekoaly import KPSTekoaly
 
 
-class KPSParempiTekoaly:
+class KPSParempiTekoaly(KPSTekoaly):
     def __init__(self):
-  
-        self.ekan_siirto= ""
-        self.tokan_siirto= ""
+        self.tekoaly = TekoalyParannettu(10)
+       
+       
     
     def pelaa(self):
         tuomari = Tuomari()
-        tekoaly = TekoalyParannettu(10)
+        
 
-        self.ekan_siirto = input("Ensimmäisen pelaajan siirto: ")
-        self.tokan_siirto = tekoaly.anna_siirto()
+        self.ekan_siirto = self.hae_ekan_siirto()
+        self.tokan_siirto = self.hae_tokan_siirto()
 
-        print(f"Tietokone valitsi: {self.tokan_siirto}")
+        self.kerro_tietokoneen_valinta()
 
         while tuomari.tarkasta_siirrot(self.ekan_siirto,self.tokan_siirto):
 
-            self.ekan_siirto = input("Ensimmäisen pelaajan siirto: ")
-            self.tokan_siirto = tekoaly.anna_siirto()
+            self.ekan_siirto = self.hae_ekan_siirto()
+            self.tokan_siirto = self.hae_tokan_siirto()
 
-            print(f"Tietokone valitsi: {self.tokan_siirto}")
-            tekoaly.aseta_siirto(self.ekan_siirto)
+            self.kerro_tietokoneen_valinta()
+            self.tekoaly.aseta_siirto(self.ekan_siirto)
 
+    
+    def hae_ekan_siirto(self):
+        return input("Ensimmäisen pelaajan siirto: ")
+    
+    
+    def hae_tokan_siirto(self):
+        return self.tekoaly.anna_siirto()
 
+    def kerro_tietokoneen_valinta(self):
+        print(f"Tietokone valitsi: {self.tokan_siirto}")
+        
