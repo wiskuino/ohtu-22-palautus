@@ -22,19 +22,3 @@ class Tekoaly:
     def aseta_siirto(self, siirto):
         # ei tehdä mitään
         pass
-
-   
-   
-   
-   
-   
-   
-
-       
-       
-       
-       
-
-
-
-
