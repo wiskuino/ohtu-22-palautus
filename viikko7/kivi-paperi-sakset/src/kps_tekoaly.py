@@ -11,12 +11,6 @@ class KPSTekoaly(KPSPelaajaVsPelaaja):
         
         self.tokan_edellinen_siirto = self.tekoaly.siirrot[0]
         
-    def pelaa(self):
-        
-        tuomari = Tuomari()
-        
-        while tuomari.tarkasta_siirrot(self.hae_ekan_siirto(),self.hae_tokan_siirto()):
-            continue
     
     def hae_ekan_siirto(self):
         return input("Ensimmäisen pelaajan siirto: ")
