@@ -15,7 +15,7 @@ class Tuomari:
             print(self.__str__())
             return True
         else:
-            self.lopeta_peli()
+            self.kiita_lopuksi_ja_kerro_tilanne()
             return False
 
     
@@ -29,10 +29,9 @@ class Tuomari:
         else:
             self.tokan_pisteet = self.tokan_pisteet + 1
 
-    def lopeta_peli(self):
+    def kiita_lopuksi_ja_kerro_tilanne(self):
         print(f"Kiitos!\n{self.__str__()}")
     
-        
 
     def __str__(self):
         return f"Pelitilanne: {self.ekan_pisteet} - {self.tokan_pisteet}\nTasapelit: {self.tasapelit}"
