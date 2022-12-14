@@ -2,8 +2,6 @@ from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 from kps_tekoaly import KPSTekoaly
 from kps_parempi_tekoaly import KPSParempiTekoaly
 
-
-
 class KPSPeliTehdas:
     def __init__(self):
         pelaaja_vastaan_pelaaja = KPSPelaajaVsPelaaja()
@@ -40,8 +38,6 @@ def main():
             peli.pelaa()
         else:
             break
-
-
 
 
 if __name__ == "__main__":

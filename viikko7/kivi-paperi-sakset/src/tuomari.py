@@ -16,6 +16,8 @@ class Tuomari:
             return True
         else:
             self.lopeta_peli()
+            return False
+
     
     def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
         if self._tasapeli(ekan_siirto, tokan_siirto):
@@ -27,6 +29,8 @@ class Tuomari:
 
     def lopeta_peli(self):
         print(f"Kiitos!\n{self.__str__()}")
+    
+        
 
     def __str__(self):
         return f"Pelitilanne: {self.ekan_pisteet} - {self.tokan_pisteet}\nTasapelit: {self.tasapelit}"

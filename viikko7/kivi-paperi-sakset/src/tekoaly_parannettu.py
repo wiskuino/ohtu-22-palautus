@@ -8,8 +8,6 @@ class TekoalyParannettu:
     def aseta_siirto(self, siirto):
         # muistin  täyttyessä vanhin poistetaan
         if self.muistin_koko == len(self._muisti):
-            #for i in range(1, len(self._muisti)):
-            #   self._muisti[i - 1] = self._muisti[i]
             self._muisti.pop(0)
             
 
