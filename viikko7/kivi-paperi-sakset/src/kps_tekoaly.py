@@ -1,15 +1,15 @@
 from tuomari import Tuomari
-from kps_pelaa import KPSPelaa
+from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 from tekoaly import Tekoaly
 
 
 
-class KPSTekoaly(KPSPelaa):
+class KPSTekoaly(KPSPelaajaVsPelaaja):
     def __init__(self):
         super().__init__()
-
-        self.ekan_siirto= ""
-        self.tokan_edellinen_siirto= "k"
+        self.tekoaly =Tekoaly()
+        
+        self.tokan_edellinen_siirto = self.tekoaly.siirrot[0]
         
     def pelaa(self):
         
@@ -18,12 +18,14 @@ class KPSTekoaly(KPSPelaa):
         
         self.ekan_siirto = self.hae_ekan_siirto()
         self.tokan_siirto = self.hae_tokan_siirto()
+        
         self.kerro_tietokoneen_valinta()
 
         while tuomari.tarkasta_siirrot(self.ekan_siirto,self.tokan_siirto):
             
             self.ekan_siirto = self.hae_ekan_siirto()
             self.tokan_siirto = self.hae_tokan_siirto()
+            
             self.kerro_tietokoneen_valinta()
             
     def hae_ekan_siirto(self):
@@ -31,8 +33,8 @@ class KPSTekoaly(KPSPelaa):
         
     
     def hae_tokan_siirto(self):
-        tekoaly =Tekoaly()
-        return tekoaly.anna_siirto(self.tokan_edellinen_siirto)
+        
+        return self.tekoaly.anna_siirto(self.tokan_edellinen_siirto)
         
     def kerro_tietokoneen_valinta(self):
         print(f"Tietokone valitsi: {self.tokan_siirto}")
