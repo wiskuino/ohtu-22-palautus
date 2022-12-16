@@ -18,5 +18,7 @@ class KPSParempiTekoaly(KPSTekoaly):
 
     def kerro_tietokoneen_valinta(self):
         print(f"Tietokone valitsi: {self.tokan_alykas_siirto}")
+        print(self.tekoaly.vertailu)
+        print(self.tekoaly.tulos_lista)
         self.tekoaly.aseta_siirto(self.ekan_siirto)
         
