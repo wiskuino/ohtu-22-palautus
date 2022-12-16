@@ -12,10 +12,7 @@ class Muisti():
         return self.muisti_dq
     
     def vapaa_indeksi(self):
-        if len(self.muisti_dq) == self.muistin_koko:
-            return self.muistin_koko
-        else:
-            return len(self.muisti_dq)
+        return len(self.muisti_dq)
 
     def __str__(self) -> str:
         return self.vapaa_indeksi()
