@@ -16,13 +16,13 @@ class KPSTekoaly(KPSPelaajaVsPelaaja):
         return input("Ensimmäisen pelaajan siirto: ")
         
     def hae_tokan_siirto(self):
-        self.tokan_alykas_siirto = self.tekoaly.anna_siirto(self.tokan_edellinen_siirto)
+        self.tokan_alykas_siirto = self.tekoaly.anna_siirto()
         self.kerro_tietokoneen_valinta()
         return self.tokan_alykas_siirto
         
     def kerro_tietokoneen_valinta(self):
         print(f"Tietokone valitsi: {self.tokan_alykas_siirto}")
-        self.tokan_edellinen_siirto = self.tokan_alykas_siirto
+
 
 
 
