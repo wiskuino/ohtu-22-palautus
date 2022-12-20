@@ -4,7 +4,6 @@ from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 #from kps_tekoaly import KPSTekoaly
 
 
-
 class KPSTekoaly(KPSPelaajaVsPelaaja):
     def __init__(self, tekoaly):
         super().__init__()
