@@ -15,13 +15,13 @@ class KPSTekoaly(KPSPelaajaVsPelaaja):
         return self.ekan_siirto
         
     def hae_tokan_siirto(self):
-        self.tokan_alykas_siirto = self.tekoaly.anna_siirto()
+        self.tokan_siirto = self.tekoaly.anna_siirto()
         self.kerro_tietokoneen_valinta()
         self.talleta_ekan_siirto(self.ekan_siirto)
-        return self.tokan_alykas_siirto
+        return self.tokan_siirto
         
     def kerro_tietokoneen_valinta(self):
-        print(f"Tietokone valitsi: {self.tokan_alykas_siirto}")
+        print(f"Tietokone valitsi: {self.tokan_siirto}")
 
     def talleta_ekan_siirto(self,siirto):
         self.tekoaly.aseta_siirto(siirto)
