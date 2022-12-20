@@ -1,12 +1,15 @@
 from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 from kps_tekoaly import KPSTekoaly
 from kps_parempi_tekoaly import KPSParempiTekoaly
+from tekoaly import Tekoaly
+from tekoaly_parannettu import TekoalyParannettu
+
 
 class KPSPeliTehdas:
     def __init__(self):
         pelaaja_vastaan_pelaaja = KPSPelaajaVsPelaaja()
-        pelaaja_vastaan_tekoaly = KPSTekoaly()
-        pelaaja_vastaan_parempi_tekoaly = KPSParempiTekoaly()
+        pelaaja_vastaan_tekoaly = KPSTekoaly(Tekoaly())
+        pelaaja_vastaan_parempi_tekoaly = KPSTekoaly(TekoalyParannettu(10))
         
         self.pelit = {"a":pelaaja_vastaan_pelaaja,"b":pelaaja_vastaan_tekoaly,"c":pelaaja_vastaan_parempi_tekoaly}
     

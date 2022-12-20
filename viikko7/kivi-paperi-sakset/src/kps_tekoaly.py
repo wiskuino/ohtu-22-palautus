@@ -1,16 +1,16 @@
 
 from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
-from tekoaly import Tekoaly
+#from tekoaly import Tekoaly
+#from kps_tekoaly import KPSTekoaly
 
 
 
 class KPSTekoaly(KPSPelaajaVsPelaaja):
-    def __init__(self):
+    def __init__(self, tekoaly):
         super().__init__()
-        self.tekoaly =Tekoaly()
+        self.tekoaly = tekoaly
         
         
-    
     def hae_ekan_siirto(self):
         self.ekan_siirto =input("Ensimmäisen pelaajan siirto: ")
         return self.ekan_siirto
