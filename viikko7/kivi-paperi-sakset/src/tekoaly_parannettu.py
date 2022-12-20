@@ -2,8 +2,10 @@
 from collections import Counter,deque
 
 class Muisti():
-    def __init__(self):
-        self.muistin_koko = 10
+    def __init__(self, muistin_koko):
+        
+        self.muistin_koko = muistin_koko
+        
         self._muisti_dq = deque([],self.muistin_koko)
         
     
@@ -23,22 +25,23 @@ class Muisti():
 
 class TekoalyParannettu:
     def __init__(self, muistin_koko):
-        self.erikoistunut_muisti = Muisti()
+        self.erikoistunut_muisti = Muisti(muistin_koko)
         self._muisti = []
-        self.muistin_koko= muistin_koko
+        self.muistin_koko = muistin_koko
         self._vapaa_muisti_indeksi = 0
 
+    def kerro_muistin_koko(self):
+        return self.muistin_koko
 
     def aseta_siirto(self, siirto):
         self._muisti = self.erikoistunut_muisti.vie_siirto_muistiin(siirto)
         
-        self._vapaa_muisti_indeksi = self.erikoistunut_muisti.vapaa_indeksi()      
 
     def anna_siirto(self):
-        if self._vapaa_muisti_indeksi == 0 or self._vapaa_muisti_indeksi == 1:
+        if self.erikoistunut_muisti.vapaa_indeksi() == 0 or self.erikoistunut_muisti.vapaa_indeksi() == 1:
             return "k"
 
-        viimeisin_siirto = self._muisti[self._vapaa_muisti_indeksi - 1]
+        viimeisin_siirto = self._muisti[self.erikoistunut_muisti.vapaa_indeksi() - 1]
 
         pohja = (self.erikoistunut_muisti.anna_ennusteen_pohja(viimeisin_siirto))
         
