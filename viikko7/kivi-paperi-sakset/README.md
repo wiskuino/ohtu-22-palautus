@@ -1,0 +1,2 @@
+poistetussa kps_parempi_tekoaly tiedostossa ollut pelimoottorin toiminnallisuus toteutettu kps_tekoaly tiedoston KPSTekoaly luokassa,
+jolle annetaan kontruktorissa käyttäjän valitseman pelivaihtoehdon mukainen tekoälylogiikka jota kutsutaan KPSTekoaly luokassa. 
