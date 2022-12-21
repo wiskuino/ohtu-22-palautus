@@ -1,7 +1,5 @@
 
 from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
-#from tekoaly import Tekoaly
-#from kps_tekoaly import KPSTekoaly
 
 
 class KPSTekoaly(KPSPelaajaVsPelaaja):

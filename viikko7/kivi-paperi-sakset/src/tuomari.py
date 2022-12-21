@@ -6,20 +6,20 @@ class Tuomari:
         self.tokan_pisteet = 0
         self.tasapelit = 0
 
-    def _onko_ok_siirto(self, siirto):
+    def onko_ok_siirto(self, siirto):
         return siirto == "k" or siirto == "p" or siirto == "s"
     
+    
     def tarkasta_siirrot(self,ekan_siirto, tokan_siirto):
-        if self._onko_ok_siirto(ekan_siirto) and self._onko_ok_siirto(tokan_siirto):
-            self.kirjaa_siirto(ekan_siirto, tokan_siirto)
+        if self.onko_ok_siirto(ekan_siirto) and self.onko_ok_siirto(tokan_siirto):
+            self.kirjaa_era(ekan_siirto, tokan_siirto)
             print(self.__str__())
             return True
         else:
             self.kiita_lopuksi_ja_kerro_tilanne()
             return False
-
     
-    def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
+    def kirjaa_era(self, ekan_siirto, tokan_siirto):
         if ekan_siirto == tokan_siirto:
             self.tasapelit = self.tasapelit + 1
         
