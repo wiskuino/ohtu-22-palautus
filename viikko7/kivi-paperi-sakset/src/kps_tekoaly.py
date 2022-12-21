@@ -2,7 +2,7 @@
 from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 
 
-class KPSTekoaly(KPSPelaajaVsPelaaja):
+class KPSTekoalyPeli(KPSPelaajaVsPelaaja):
     def __init__(self, tekoaly):
         super().__init__()
         self.tekoaly = tekoaly
